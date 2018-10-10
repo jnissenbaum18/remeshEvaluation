@@ -25,26 +25,33 @@ Please describe trade offs in your current approach and how you might prepare th
 The repository can be run by simply cloning into an empty directory, running "npm install" then "npm start". Navigate to localhost:3000 to access the server. The server has four routes that have been built: /query/users, /query/messages, /query/questions and /query/votes. 
 
 For the /messages and /questions routes, the server is expecting a query param for text to match a message or question to. So if you wanted to search for a message that has text matching "as" you would navigate to:
+
 http://localhost:3000/query/messages?text=as
 
 For the /votes route, the server is expecting a query param for id to search the votes table for and then match a message to it. Example:
+
 http://localhost:3000/query/votes?id=2
 
 The /users route is the most complicated, it can accept multiple query parameters in multiple combinations.
 
-To query for age, the server accepts a single age such as 27, it also accepts an age range such as 40-49, and it can accept multiple combinations of either such as 42,54,18-24,65+. Example:
+To query for age, the server accepts a single age such as 27, it also accepts an age range such as 40-49, and it can accept multiple combinations of either such as 42,54,18-24,65+. Example: 
+
 http://localhost:3000/query/users?age=42,54,18-24,65+
 
 To query for income, the server accepts a single income number such as 18545, an income range such as 40000-50000 (note how there are no comma's or escape characters), and it can accept multiple combinations of either such as 14500,40000-50000. Example:
+
 http://localhost:3000/query/users?income=14500,40000-50000
 
 To query for living_environment, the server accepts any combination of "Suburban", "Urban" or "Rural" (capitalization does not matter). Example:
+
 http://localhost:3000/query/users?living_environment=urban,Rural
 
-To query for gender, the server accepts any combination of "Male", "M", "Female", "F" (capitalization does not matter). Example
+To query for gender, the server accepts any combination of "Male", "M", "Female", "F" (capitalization does not matter). Example:
+
 http://localhost:3000/query/users?sex=M,female
 
 Any of these queries can be chained together in the url separated by &'s. Example:
+
 http://localhost:3000/query/users?income=20000-30000,50000&age=26,30-39&sex=M,Female&living_environment=Rural
 
 ## Thoughts about approach and prod prep.

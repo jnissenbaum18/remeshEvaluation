@@ -20,7 +20,7 @@ Please provide instructions on how to test this server and/or where this is depl
 
 Please describe trade offs in your current approach and how you might prepare this server for production.
 
-##Install and Usage
+## Install and Usage
 
 The repository can be run by simply cloning into an empty directory, running "npm install" then "npm start". Navigate to localhost:3000 to access the server. The server has four routes that have been built: /query/users, /query/messages, /query/questions and /query/votes. 
 
@@ -47,7 +47,7 @@ http://localhost:3000/query/users?sex=M,female
 Any of these queries can be chained together in the url separated by &'s. Example:
 http://localhost:3000/query/users?income=20000-30000,50000&age=26,30-39&sex=M,Female&living_environment=Rural
 
-##Thoughts about approach and prod prep.
+## Thoughts about approach and prod prep.
 
 As I was working through the challenge, I noticed a few oddities. First, the votes table seems to be useless in that the only data it's storing is its own id and the id of a message. Without knowing how the vote was cast, there really is no point to keeping this table. The requirements did not mention anything about votes, so it wasn't that impactful. Second, and by far the most frustrating aspect of the database, is how age and income are being stored. By saving ranges in a single field instead of having a max and min, it rules out the possibility of easily executing a query to match a number to that range. Instead, I had to design utility functions to preprocess the data and match them to the exact strings within the data fields. This didn't feel right for me at the time and I tried looking for a possible alternative, but I couldn't find one. If I had the choice, I would definitely reformat the data to break out those number ranges.
 
